@@ -1,0 +1,34 @@
+name: Node.js CI Pipeline
+
+# 1. Trigger: Yeh pipeline kab chalni chahiye?
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+# 2. Jobs: Pipeline kya kaam karegi?
+jobs:
+  build-and-test:
+    name: Build and Run Tests
+    runs-on: ubuntu-latest # GitHub humein ek Ubuntu machine dega virtual environment mein
+
+    steps:
+      # Step A: GitHub ke runner server par hamara code download (checkout) karna
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      # Step B: Ubuntu runner par Node.js environment setup karna
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Hum Node.js ka version 20 use kar rahe hain
+          cache: 'npm'       # Cache enable karne se agli baar dependencies jaldi install hongi
+
+      # Step C: Project ki saari dependencies (node_modules) install karna
+      - name: Install Project Dependencies
+        run: npm ci
+
+      # Step D: Code ke automated tests run karna
+      - name: Run Automated Tests
+        run: npm test
