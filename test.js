@@ -1,4 +1,5 @@
-const { spawn } = require('child_process')
+throw newn Error("Devops Deliberate Failure Test!"); 
+const { spawn } = require ('child_process')
 const { request } = require('http')
 
 const PORT = process.env.PORT || 5006
@@ -35,8 +36,7 @@ describe('getting started guide', () => {
   })
 })
 
-async function get(url) {
-  return new Promise((resolve, reject) => {
+async function get(url) {  return new Promise((resolve, reject) => {
     const req = request(url, {method: 'GET'}, (res) => {
       let body = ''
       res.setEncoding('utf-8')
