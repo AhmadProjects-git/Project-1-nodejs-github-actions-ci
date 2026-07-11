@@ -1,4 +1,3 @@
-throw newn Error("Devops Deliberate Failure Test!"); 
 const { spawn } = require ('child_process')
 const { request } = require('http')
 
